@@ -5,14 +5,14 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 module.exports = function (env){
-  let isProd = env && env.production;
+  var isProd = env && env.production;
 
   const extractSass = new ExtractTextPlugin({
     filename: "[name].[contenthash].css",
     disable: !isProd
 });
 
-  let entryDev = [
+  var entryDev = [
     'react-hot-loader/patch',
     // activate HMR for React
 
@@ -28,22 +28,22 @@ module.exports = function (env){
     // the entry point of our app
   ];
 
-  let entryProd = './src/index.js';
+  var entryProd = './src/index.js';
 
-  let outputDev = {
+  var outputDev = {
     filename: 'static/bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
     // necessary for HMR to know where to load the hot update chunks
   };
 
-  let outputProd = {
+  var outputProd = {
     filename: 'static/bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: './'
   };
 
-  let plugins = [];
+  var plugins = [];
   if(isProd){
     plugins.push(new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
